@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import classes from "./styles.module.css"
 import TodoItem from "./components/todo-item"
-import todoDetail from "./components/todo-detail"
+import TodoDetails from "./components/todo-detail"
+import { Skeleton } from "@mui/material";
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -41,7 +42,6 @@ function App() {
       if (details) {
         setTodoDetail(details);
         setOpenDialog(true);
-        console.log(details);
       } else {
         setTodoDetail(null);
         setOpenDialog(false);
@@ -49,7 +49,6 @@ function App() {
       
     } catch (error) {
       console.log(`error : `, error);
-      
     }
   }
 
@@ -57,6 +56,8 @@ function App() {
     fetchToDoList()
   }, [])
     
+  if(loading) return <Skeleton variant="rectangulat" width={650} height={650}></Skeleton>
+
   return (
     <div className={classes.mainWrapper}>
       <h1 className={classes.headerTitle}>TodoApp using Material UI</h1>
@@ -69,11 +70,10 @@ function App() {
           : null
         }
       </div>
-      <todoDetail
-        setOpenDialog={setOpenDialog}
+      <TodoDetails setOpenDialog={setOpenDialog}
         openDialog={openDialog}
         todoDetail={todoDetail}
-        setTodoDetail={setTodoDetail}></todoDetail>
+        setTodoDetail={setTodoDetail}></TodoDetails>
     </div>
   );
 }
