@@ -6,6 +6,7 @@ import './App.css'
 import RecipeList from "./pages/recipes";
 import CommentList from "./pages/comments";
 import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import RecipeDetail from "./pages/recipe-detail";
 
 function App() {
     const navigate = useNavigate()
@@ -18,7 +19,8 @@ function App() {
             <button onClick={()=>{navigate("/comment-list")}} style={{ background: 'black', color: 'white', margin : '10px'}}>Comment List Page</button>
             <Routes>
                 <Route path="/recipe-list" element = {<RecipeList/>}></Route>
-                <Route path="/comment-list" element = {<CommentList/>}></Route>
+                <Route path="/comment-list" element={<CommentList />}></Route>
+                <Route path="/recipe-list/:id" element = {<RecipeDetail/>}/>
             </Routes>
         </div>
     )
