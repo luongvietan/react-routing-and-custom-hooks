@@ -4,6 +4,8 @@ import App from './App.jsx'
 import './index.css'
 import GlobalState from './context/index.jsx'
 
-createRoot(document.getElementById('root')).render(
-    <App />
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 )
