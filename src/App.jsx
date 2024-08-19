@@ -8,6 +8,7 @@ import CommentList from "./pages/comments";
 import { Route, Routes, useNavigate, Link } from "react-router-dom";
 import RecipeDetail from "./pages/recipe-detail";
 
+
 function App() {
     const navigate = useNavigate()
     return (
