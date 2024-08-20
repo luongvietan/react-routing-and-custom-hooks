@@ -1,27 +1,47 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import classes from "./styles.module.css"
-import { Skeleton } from "@mui/material";
 import './App.css'
 import RecipeList from "./pages/recipes";
 import CommentList from "./pages/comments";
-import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import { Route, Routes, useNavigate, Link, useRoutes } from "react-router-dom";
 import RecipeDetail from "./pages/recipe-detail";
+import NotFound from "./pages/not-found";
+import Layout from "./component/layout";
 
+function CustomRoutes() {
+    const element = useRoutes([
+        {
+          path: "/home", element: <Layout />,
+          children: [
+            { path: "recipe-list", element: <RecipeList />},
+            { path: "comment-list", element: <CommentList /> },
+            { path: "recipe-list/:id", element: <RecipeDetail /> },
+          ],
+        },
+        {
+          path: "*",
+          element: <NotFound />,
+        },
+      ]);
+      return element;
+
+}
 function App() {
     const navigate = useNavigate()
     return (
         <div>
             <div>
-                <Link to={"/recipe-list"}>Alternative way of navigating to recipe list page</Link>
+                <Link to={"/home/recipe-list"}>Alternative way of navigating to recipe list page</Link>
             </div>
-            <button onClick={()=>{navigate("/recipe-list")}} style={{background : 'black', color : 'white', margin : '10px'}}>Recipe List Page</button>
-            <button onClick={()=>{navigate("/comment-list")}} style={{ background: 'black', color: 'white', margin : '10px'}}>Comment List Page</button>
-            <Routes>
-                <Route path="/recipe-list" element = {<RecipeList/>}></Route>
-                <Route path="/comment-list" element={<CommentList />}></Route>
-                <Route path="/recipe-list/:id" element = {<RecipeDetail/>}/>
-            </Routes>
+            <button onClick={()=>{navigate("/home/recipe-list")}} style={{background : 'black', color : 'white', margin : '10px'}}>Recipe List Page</button>
+            <button onClick={()=>{navigate("/home/comment-list")}} style={{ background: 'black', color: 'white', margin : '10px'}}>Comment List Page</button>
+            {/* <Routes>
+                <Route path="/home" element={<Layout />}>
+                    <Route path="recipe-list" element = {<RecipeList />} />
+                    <Route path="comment-list" element={<CommentList />} />
+                    <Route path="recipe-list/:id" element={<RecipeDetail />} />
+                </Route>
+                <Route path="*" element = {<NotFound />}/>
+            </Routes> */}
+            <CustomRoutes />
         </div>
     )
 }
