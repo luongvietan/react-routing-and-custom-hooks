@@ -8,16 +8,16 @@ export default function useFetch(url, option = {}) {
     async function fetchData() {
         setLoading(true);
         try {
-            const res = await fetch(url, { ...option });
-            if (!res.ok) throw new Error(res.statusText);
-            const result = await res.json()
+            const respond = await fetch(url, { ...option }); 
+            if (!respond.ok) throw new Error(respond.statusText);
+            const result = await respond.json()
             if (result) {
-                setData(res);
+                setData(result);
                 setError(null);
                 setLoading(false)
             }
         } catch (error) {
-            console.log(error);
+            console.log(`error : `, error);
             setLoading(false);
             setError(error)
         }
