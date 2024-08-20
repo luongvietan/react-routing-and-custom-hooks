@@ -6,19 +6,19 @@ export default function RecipeList() {
 
     // result from Custom useFetch Hook (component/hooks/use-fetch)
     const {data, loading, error} = useFetch('https://dummyjson.com/recipes')
-    if(loading) return <h1>Fetching data . . .</h1>
+    if (loading) return <h1>Fetching data . . .</h1>
+    console.log(`data, loading, error : `,data, loading, error);
     return (
         <div>
             <h1>Recipe List Page</h1>
             <ul>
                 {
-                    data?.recipe?.length > 0 ?
-                        data?.recipe?.map(recipeItem => {
+                    data?.recipes?.length > 0 ?
+                        data?.recipes?.map(recipeItem => (
                         <div>
                             <img src={recipeItem.image} />
                             <label htmlFor={recipeItem.name}>{recipeItem.name}</label>
-                        </div>
-                        })
+                        </div>))
                         : null
                 }
             </ul>
