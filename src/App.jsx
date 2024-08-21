@@ -8,6 +8,7 @@ import Layout from "./component/layout";
 import HookForm from "./pages/hook-form";
 import Hook from "./pages/hooks";
 import UseMemoHook from "./pages/hooks/use-memo";
+import UseCallBackHook from "./pages/hooks/use-callback";
 
 function CustomRoutes() {
   const element = useRoutes([
@@ -33,13 +34,13 @@ function CustomRoutes() {
       element: <Hook />,
     },
     {
-      path: "/memo",
+      path: "/usememo",
       element: <UseMemoHook />,
     },
-    // {
-    //   path: "/hook",
-    //   element: <Hook />,
-    // }
+    {
+      path: "/usecallback",
+      element: <UseCallBackHook />,
+    },
   ]);
   return element;
 }
