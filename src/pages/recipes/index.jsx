@@ -14,7 +14,10 @@ export default function RecipeList() {
         {data?.recipes?.length > 0
           ? data?.recipes?.map((recipeItem) => (
               <div key={recipeItem.id}>
-                <img src={recipeItem.image} />
+                <img
+                  src={recipeItem.image}
+                  style={{ padding: "5px", width: "150px" }}
+                />
                 <label htmlFor={recipeItem.name}>{recipeItem.name}</label>
               </div>
             ))
