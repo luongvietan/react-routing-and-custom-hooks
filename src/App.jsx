@@ -5,6 +5,7 @@ import { Route, Routes, useNavigate, Link, useRoutes } from "react-router-dom";
 import RecipeDetail from "./pages/recipe-detail";
 import NotFound from "./pages/not-found";
 import Layout from "./component/layout";
+import HookForm from "./pages/hook-form";
 
 function CustomRoutes() {
   const element = useRoutes([
@@ -21,6 +22,10 @@ function CustomRoutes() {
       path: "*",
       element: <NotFound />,
     },
+    {
+      path: "/hook-form",
+      element: <HookForm />,
+    },
   ]);
   return element;
 }
@@ -28,7 +33,7 @@ function App() {
   const navigate = useNavigate();
   return (
     <div>
-      <div>
+      {/* <div>
         <Link to={"/home/recipe-list"}>
           Alternative way of navigating to recipe list page
         </Link>
@@ -48,7 +53,7 @@ function App() {
         style={{ background: "black", color: "white", margin: "10px" }}
       >
         Comment List Page
-      </button>
+      </button> */}
       {/* <Routes>
                 <Route path="/home" element={<Layout />}>
                     <Route path="recipe-list" element = {<RecipeList />} />
