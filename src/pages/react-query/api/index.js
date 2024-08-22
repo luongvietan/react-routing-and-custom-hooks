@@ -22,6 +22,7 @@ export const fetchProductList = async () => {
     await new Promise((resolve) => setTimeout(resolve, 1000))
     return productList
 }
+const timeout = 1000;
 export const addNewProduct = async (productName) => {
     await new Promise((resolve) => setTimeout(resolve, timeout))
     const newProduct = {
